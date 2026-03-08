@@ -1,3 +1,4 @@
+cat > apps/web/src/pages/BookPickupPage.jsx << 'EOF'
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Truck, CheckCircle2, AlertCircle } from 'lucide-react';
@@ -71,7 +72,7 @@ const BookPickupPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-golden-texture py-12">
       <Helmet>
         <title>Book Free Pickup | Speedat</title>
         <meta name="description" content="Schedule a free parcel pickup from your location in Lahore." />
@@ -79,43 +80,34 @@ const BookPickupPage = () => {
 
       <div className="container mx-auto px-4 max-w-3xl">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-secondary mb-4">Book Free Pickup</h1>
-          <p className="text-gray-600 text-lg">Schedule a courier pickup from your doorstep in Lahore.</p>
+          <h1 className="text-5xl font-bold text-secondary mb-4 flex items-center justify-center gap-3">
+            <Truck className="h-10 w-10 text-primary" />
+            Book Free Pickup
+          </h1>
+          <p className="text-gray-700 text-lg font-medium">Schedule a courier pickup from your doorstep in Lahore.</p>
         </div>
 
         {success ? (
-          <Card className="shadow-xl border-0 text-center py-12 animate-in zoom-in-95">
-            <CardContent className="space-y-6">
-              <div className="w-20 h-20 bg-green-100 text-green-600 rounded-full flex items-center justify-center mx-auto">
-                <CheckCircle2 className="w-10 h-10" />
+          <Card className="shadow-2xl border-t-4 border-green-500 text-center py-12 animate-fade-in">
+            <CardContent className="space-y-4">
+              <div className="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto">
+                <CheckCircle2 className="h-8 w-8 text-green-600" />
               </div>
-              <h2 className="text-3xl font-bold text-gray-900">Pickup Scheduled!</h2>
-              <p className="text-gray-600 max-w-md mx-auto">
-                Your pickup request has been received. Our representative will contact you shortly.
-              </p>
-              <div className="bg-gray-50 p-6 rounded-xl inline-block border border-gray-100">
-                <p className="text-sm text-gray-500 mb-1">Reference Number</p>
-                <p className="text-2xl font-mono font-bold text-primary">{success}</p>
-              </div>
-              <div>
-                <Button onClick={() => setSuccess(null)} variant="outline" className="mt-4">
-                  Book Another Pickup
-                </Button>
-              </div>
+              <h2 className="text-3xl font-bold text-secondary">Pickup Booked!</h2>
+              <p className="text-gray-700 font-medium">Your reference number is:</p>
+              <p className="text-2xl font-bold text-primary">{success}</p>
+              <p className="text-gray-600">Our driver will contact you soon to confirm the pickup time.</p>
             </CardContent>
           </Card>
         ) : (
-          <Card className="shadow-xl border-0">
-            <CardHeader className="bg-white border-b rounded-t-xl">
-              <CardTitle className="flex items-center gap-2 text-secondary">
-                <Truck className="h-5 w-5 text-primary" />
-                Pickup Details
-              </CardTitle>
+          <Card className="shadow-2xl border-t-4 border-primary">
+            <CardHeader className="bg-gradient-to-r from-primary to-secondary text-white">
+              <CardTitle className="text-2xl font-bold">Pickup Details</CardTitle>
             </CardHeader>
-            <CardContent className="p-6 sm:p-8">
+            <CardContent className="pt-8">
               {error && (
-                <div className="mb-6 bg-red-50 text-red-700 p-4 rounded-lg flex items-center gap-3 text-sm">
-                  <AlertCircle className="h-5 w-5 shrink-0" />
+                <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-xl border-l-4 border-red-500 font-medium flex items-center gap-2">
+                  <AlertCircle className="h-5 w-5" />
                   {error}
                 </div>
               )}
@@ -123,58 +115,103 @@ const BookPickupPage = () => {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="customer_name" className="text-gray-700">Full Name *</Label>
-                    <Input id="customer_name" required value={formData.customer_name} onChange={handleChange} className="text-gray-900" />
+                    <Label htmlFor="customer_name" className="font-bold text-secondary">Full Name</Label>
+                    <Input
+                      id="customer_name"
+                      placeholder="Your name"
+                      value={formData.customer_name}
+                      onChange={handleChange}
+                      required
+                      className="border-2 border-gray-300 focus:border-primary focus:ring-primary h-12 font-medium"
+                    />
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="phone" className="text-gray-700">Phone Number *</Label>
-                    <Input id="phone" type="tel" required placeholder="+92 3XX XXXXXXX" value={formData.phone} onChange={handleChange} className="text-gray-900" />
+                    <Label htmlFor="phone" className="font-bold text-secondary">Phone Number</Label>
+                    <Input
+                      id="phone"
+                      type="tel"
+                      placeholder="+92 300 1234567"
+                      value={formData.phone}
+                      onChange={handleChange}
+                      required
+                      className="border-2 border-gray-300 focus:border-primary focus:ring-primary h-12 font-medium"
+                    />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <Label htmlFor="pickup_address" className="text-gray-700">Complete Pickup Address (Lahore) *</Label>
-                  <Input id="pickup_address" required value={formData.pickup_address} onChange={handleChange} className="text-gray-900" />
+                  <Label htmlFor="pickup_address" className="font-bold text-secondary">Pickup Address</Label>
+                  <Input
+                    id="pickup_address"
+                    placeholder="Enter your full address"
+                    value={formData.pickup_address}
+                    onChange={handleChange}
+                    required
+                    className="border-2 border-gray-300 focus:border-primary focus:ring-primary h-12 font-medium"
+                  />
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="destination" className="text-gray-700">Destination Country *</Label>
-                    <Select required value={formData.destination} onValueChange={(v) => handleSelectChange('destination', v)}>
-                      <SelectTrigger className="text-gray-900">
-                        <SelectValue placeholder="Select destination" />
+                    <Label className="font-bold text-secondary">Destination Country</Label>
+                    <Select value={formData.destination} onValueChange={(value) => handleSelectChange('destination', value)}>
+                      <SelectTrigger className="border-2 border-gray-300 focus:border-primary focus:ring-primary h-12 font-medium">
+                        <SelectValue placeholder="Select country" />
                       </SelectTrigger>
                       <SelectContent>
-                        {DESTINATIONS.map(d => <SelectItem key={d} value={d}>{d}</SelectItem>)}
+                        {DESTINATIONS.map(dest => (
+                          <SelectItem key={dest} value={dest} className="font-medium">{dest}</SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="weight" className="text-gray-700">Approx. Weight (kg) *</Label>
-                    <Input id="weight" type="number" min="0.1" step="0.1" required value={formData.weight} onChange={handleChange} className="text-gray-900" />
+                    <Label htmlFor="weight" className="font-bold text-secondary">Weight (kg)</Label>
+                    <Input
+                      id="weight"
+                      type="number"
+                      step="0.1"
+                      placeholder="0.5"
+                      value={formData.weight}
+                      onChange={handleChange}
+                      required
+                      className="border-2 border-gray-300 focus:border-primary focus:ring-primary h-12 font-medium"
+                    />
                   </div>
                 </div>
 
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                   <div className="space-y-2">
-                    <Label htmlFor="parcel_type" className="text-gray-700">Parcel Type *</Label>
-                    <Select required value={formData.parcel_type} onValueChange={(v) => handleSelectChange('parcel_type', v)}>
-                      <SelectTrigger className="text-gray-900">
+                    <Label className="font-bold text-secondary">Parcel Type</Label>
+                    <Select value={formData.parcel_type} onValueChange={(value) => handleSelectChange('parcel_type', value)}>
+                      <SelectTrigger className="border-2 border-gray-300 focus:border-primary focus:ring-primary h-12 font-medium">
                         <SelectValue placeholder="Select type" />
                       </SelectTrigger>
                       <SelectContent>
-                        {PARCEL_TYPES.map(t => <SelectItem key={t.value} value={t.value}>{t.label}</SelectItem>)}
+                        {PARCEL_TYPES.map(type => (
+                          <SelectItem key={type.value} value={type.value} className="font-medium">{type.label}</SelectItem>
+                        ))}
                       </SelectContent>
                     </Select>
                   </div>
                   <div className="space-y-2">
-                    <Label htmlFor="pickup_time" className="text-gray-700">Preferred Pickup Time</Label>
-                    <Input id="pickup_time" type="datetime-local" value={formData.pickup_time} onChange={handleChange} className="text-gray-900" />
+                    <Label htmlFor="pickup_time" className="font-bold text-secondary">Preferred Pickup Time</Label>
+                    <Input
+                      id="pickup_time"
+                      type="datetime-local"
+                      value={formData.pickup_time}
+                      onChange={handleChange}
+                      className="border-2 border-gray-300 focus:border-primary focus:ring-primary h-12 font-medium"
+                    />
                   </div>
                 </div>
 
-                <Button type="submit" disabled={loading} className="w-full h-14 text-lg bg-primary hover:bg-primary/90 text-white rounded-xl shadow-md mt-8">
-                  {loading ? 'Submitting...' : 'Confirm Pickup Request'}
+                <Button 
+                  type="submit" 
+                  disabled={loading}
+                  className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white h-14 font-bold uppercase tracking-wide rounded-xl mt-8"
+                >
+                  {loading ? 'Booking Pickup...' : 'Book Free Pickup'}
                 </Button>
               </form>
             </CardContent>
@@ -186,3 +223,4 @@ const BookPickupPage = () => {
 };
 
 export default BookPickupPage;
+EOF
