@@ -1,3 +1,4 @@
+cat > apps/web/src/pages/SmartRateCalculatorPage.jsx << 'EOF'
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { Calculator, MessageCircle, Package } from 'lucide-react';
@@ -54,125 +55,117 @@ const SmartRateCalculatorPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-golden-texture py-12">
       <Helmet>
         <title>Smart Rate Calculator | Speedat</title>
-        <meta name="description" content="Calculate international shipping rates instantly with Speedat." />
+        <meta name="description" content="Calculate shipping rates for your international parcels with Speedat - Speed Against Time!" />
       </Helmet>
 
-      <div className="container mx-auto px-4 max-w-6xl">
+      <div className="container mx-auto px-4 max-w-4xl">
         <div className="text-center mb-12">
-          <h1 className="text-4xl font-bold text-secondary mb-4">Smart Rate Calculator</h1>
-          <p className="text-gray-600 text-lg">Get instant, accurate shipping estimates for your international parcels.</p>
+          <h1 className="text-5xl font-bold text-secondary mb-4 flex items-center justify-center gap-3">
+            <Calculator className="h-10 w-10 text-primary" />
+            Smart Rate Calculator
+          </h1>
+          <p className="text-gray-700 text-lg font-medium">Get instant shipping quotes - Speed Against Time!</p>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          {/* Left Panel: Inputs */}
-          <Card className="shadow-lg border-0">
-            <CardHeader className="bg-white border-b rounded-t-xl">
-              <CardTitle className="flex items-center gap-2 text-secondary">
-                <Calculator className="h-5 w-5 text-primary" />
-                Shipment Details
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="p-6 space-y-6 bg-white rounded-b-xl">
-              <div className="space-y-2">
-                <Label htmlFor="destination" className="text-gray-700">Destination Country</Label>
-                <Select value={destination} onValueChange={setDestination}>
-                  <SelectTrigger id="destination" className="h-12 text-gray-900">
-                    <SelectValue placeholder="Select destination" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    {Object.keys(PRICING_LOGIC).map(country => (
-                      <SelectItem key={country} value={country}>{country}</SelectItem>
-                    ))}
-                  </SelectContent>
-                </Select>
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="weight" className="text-gray-700">Weight (kg)</Label>
-                <Input 
-                  id="weight" 
-                  type="number" 
-                  min="0.1" 
-                  step="0.1" 
-                  placeholder="e.g. 2.5" 
-                  value={weight}
-                  onChange={(e) => setWeight(e.target.value)}
-                  className="h-12 text-gray-900"
-                />
-              </div>
-
-              <div className="space-y-2">
-                <Label htmlFor="period" className="text-gray-700">Delivery Service</Label>
-                <Select value={period} onValueChange={setPeriod}>
-                  <SelectTrigger id="period" className="h-12 text-gray-900">
-                    <SelectValue placeholder="Select service level" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Standard">Standard Delivery</SelectItem>
-                    <SelectItem value="Express">Express Delivery</SelectItem>
-                    <SelectItem value="Overnight">Overnight Delivery</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Right Panel: Outputs */}
-          <Card className="shadow-lg border-0 bg-secondary text-white overflow-hidden relative">
-            <div className="absolute top-0 right-0 p-12 opacity-5 pointer-events-none">
-              <Package className="w-64 h-64" />
-            </div>
-            <CardHeader className="border-b border-white/10 relative z-10">
-              <CardTitle className="text-white">Quote Summary</CardTitle>
-            </CardHeader>
-            <CardContent className="p-8 relative z-10 flex flex-col h-[calc(100%-73px)]">
-              {price ? (
-                <div className="space-y-8 flex-grow">
-                  <div className="grid grid-cols-2 gap-4 text-sm">
-                    <div className="bg-white/10 p-4 rounded-lg">
-                      <p className="text-gray-300 mb-1">From</p>
-                      <p className="font-semibold text-lg">Lahore, PK</p>
-                    </div>
-                    <div className="bg-white/10 p-4 rounded-lg">
-                      <p className="text-gray-300 mb-1">To</p>
-                      <p className="font-semibold text-lg">{destination}</p>
-                    </div>
-                  </div>
-
-                  <div className="bg-white/10 p-6 rounded-xl text-center">
-                    <p className="text-gray-300 mb-2">Estimated Total</p>
-                    <p className="text-5xl font-bold text-transparent bg-clip-text bg-golden-gradient mb-2">
-                      PKR {price}
-                    </p>
-                    <p className="text-sm text-gray-300">
-                      Est. Delivery: <span className="font-semibold text-white">{getDeliveryDays()}</span>
-                    </p>
-                  </div>
-
-                  <Button 
-                    onClick={handleWhatsAppQuote}
-                    className="w-full h-14 text-lg bg-[#25D366] hover:bg-[#20BD5A] text-white rounded-xl shadow-lg transition-all hover:-translate-y-1 mt-auto"
-                  >
-                    <MessageCircle className="mr-2 h-5 w-5" />
-                    Get WhatsApp Quote
-                  </Button>
+        <Card className="shadow-2xl border-t-4 border-primary">
+          <CardHeader className="bg-gradient-to-r from-primary to-secondary text-white">
+            <CardTitle className="text-2xl font-bold flex items-center gap-2">
+              <Package className="h-6 w-6" />
+              Calculate Your Rate
+            </CardTitle>
+          </CardHeader>
+          <CardContent className="p-8">
+            <form className="space-y-8">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div className="space-y-2">
+                  <Label className="font-bold text-secondary text-lg">Destination Country</Label>
+                  <Select value={destination} onValueChange={setDestination}>
+                    <SelectTrigger className="border-2 border-gray-300 focus:border-primary focus:ring-primary h-12 font-medium text-gray-900">
+                      <SelectValue placeholder="Select destination" />
+                    </SelectTrigger>
+                    <SelectContent>
+                      {Object.keys(PRICING_LOGIC).map(country => (
+                        <SelectItem key={country} value={country} className="font-medium">{country}</SelectItem>
+                      ))}
+                    </SelectContent>
+                  </Select>
                 </div>
-              ) : (
-                <div className="flex flex-col items-center justify-center h-full text-center space-y-4 opacity-70">
-                  <Calculator className="h-16 w-16 mb-4" />
-                  <p className="text-xl">Enter shipment details to see your quote</p>
-                  <p className="text-sm font-light">Select destination and weight to calculate instantly.</p>
+
+                <div className="space-y-2">
+                  <Label htmlFor="weight" className="font-bold text-secondary text-lg">Weight (kg)</Label>
+                  <Input
+                    id="weight"
+                    type="number"
+                    step="0.1"
+                    min="0"
+                    placeholder="Enter weight"
+                    value={weight}
+                    onChange={(e) => setWeight(e.target.value)}
+                    className="border-2 border-gray-300 focus:border-primary focus:ring-primary h-12 font-medium"
+                  />
+                </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label className="font-bold text-secondary text-lg">Service Type</Label>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  {['Standard', 'Express', 'Overnight'].map(service => (
+                    <button
+                      key={service}
+                      type="button"
+                      onClick={() => setPeriod(service)}
+                      className={`p-4 rounded-lg font-bold uppercase tracking-wide transition-all border-2 ${
+                        period === service
+                          ? 'bg-gradient-to-r from-primary to-secondary text-white border-primary'
+                          : 'bg-gray-50 text-secondary border-gray-300 hover:border-primary'
+                      }`}
+                    >
+                      {service}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {price && (
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-8 border-t-2 border-gray-200">
+                  <div className="p-6 bg-gradient-to-br from-primary/10 to-secondary/10 rounded-xl border-2 border-primary">
+                    <p className="text-gray-600 text-sm font-semibold uppercase tracking-wide">Estimated Price</p>
+                    <p className="text-4xl font-bold text-primary mt-2">PKR {price}</p>
+                  </div>
+                  <div className="p-6 bg-accent/10 rounded-xl border-2 border-accent">
+                    <p className="text-gray-600 text-sm font-semibold uppercase tracking-wide">Delivery Time</p>
+                    <p className="text-2xl font-bold text-secondary mt-2">{getDeliveryDays()}</p>
+                  </div>
                 </div>
               )}
-            </CardContent>
-          </Card>
-        </div>
+
+              <div className="flex flex-col sm:flex-row gap-4 pt-8">
+                <Button 
+                  type="button"
+                  onClick={handleWhatsAppQuote}
+                  disabled={!destination || !weight}
+                  className="flex-1 bg-accent hover:bg-accent/90 text-secondary h-14 font-bold uppercase tracking-wide rounded-xl"
+                >
+                  <MessageCircle className="mr-2 h-5 w-5" />
+                  WhatsApp Quote
+                </Button>
+                <Button 
+                  type="button"
+                  className="flex-1 bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white h-14 font-bold uppercase tracking-wide rounded-xl"
+                >
+                  Proceed to Booking
+                </Button>
+              </div>
+            </form>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 };
 
 export default SmartRateCalculatorPage;
+EOF
