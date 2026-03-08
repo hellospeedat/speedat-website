@@ -1,3 +1,4 @@
+cat > apps/web/src/pages/ContactPage.jsx << 'EOF'
 import React, { useState } from 'react';
 import { Helmet } from 'react-helmet';
 import { MapPin, Phone, Mail, MessageCircle, Send } from 'lucide-react';
@@ -27,27 +28,27 @@ const ContactPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-50 py-12">
+    <div className="min-h-screen bg-golden-texture py-12">
       <Helmet>
         <title>Contact Us | Speedat</title>
-        <meta name="description" content="Get in touch with Speedat International Courier & Cargo." />
+        <meta name="description" content="Get in touch with Speedat International Courier & Cargo - Speed Against Time!" />
       </Helmet>
 
       <div className="container mx-auto px-4 max-w-6xl">
         <div className="text-center mb-16">
-          <h1 className="text-4xl font-bold text-secondary mb-4">Contact Us</h1>
-          <p className="text-gray-600 text-lg">We're here to help with all your shipping needs.</p>
+          <h1 className="text-5xl font-bold text-secondary mb-4">Contact Us</h1>
+          <p className="text-gray-700 text-lg font-medium">We're here to help with all your shipping needs - Speed Against Time!</p>
         </div>
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
-          <Card className="shadow-md border-0 hover:shadow-lg transition-shadow">
+          <Card className="shadow-xl border-t-4 border-primary hover:shadow-2xl transition-all group">
             <CardContent className="p-8 text-center flex flex-col items-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <Phone className="h-8 w-8 text-primary" />
+              <div className="w-16 h-16 bg-gradient-to-br from-primary/20 to-secondary/20 rounded-full flex items-center justify-center mb-6 group-hover:from-primary group-hover:to-secondary group-hover:text-white transition-all group-hover:scale-110">
+                <Phone className="h-8 w-8 text-primary group-hover:text-white" />
               </div>
               <h3 className="text-xl font-bold text-secondary mb-4">Call Us</h3>
-              <div className="space-y-2 text-gray-600">
-                <a href="https://wa.me/923255943950" className="flex items-center justify-center gap-2 text-[#25D366] font-medium hover:underline">
+              <div className="space-y-2 text-gray-700 font-medium">
+                <a href="https://wa.me/923255943950" className="flex items-center justify-center gap-2 text-primary font-bold hover:underline">
                   <MessageCircle className="h-4 w-4" /> +92 325 5943950
                 </a>
                 <p>+92 321 4174421</p>
@@ -57,104 +58,99 @@ const ContactPage = () => {
             </CardContent>
           </Card>
 
-          <Card className="shadow-md border-0 hover:shadow-lg transition-shadow">
+          <Card className="shadow-xl border-t-4 border-accent hover:shadow-2xl transition-all group">
             <CardContent className="p-8 text-center flex flex-col items-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <Mail className="h-8 w-8 text-primary" />
+              <div className="w-16 h-16 bg-accent/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-accent group-hover:text-secondary transition-all group-hover:scale-110">
+                <Mail className="h-8 w-8 text-accent group-hover:text-secondary" />
               </div>
               <h3 className="text-xl font-bold text-secondary mb-4">Email Us</h3>
-              <a href="mailto:hellospeedat@gmail.com" className="text-gray-600 hover:text-primary transition-colors">
-                hellospeedat@gmail.com
-              </a>
+              <div className="space-y-2 text-gray-700 font-medium">
+                <a href="mailto:info@speedat.com.pk" className="hover:text-primary font-bold">info@speedat.com.pk</a>
+                <a href="mailto:support@speedat.com.pk" className="hover:text-primary font-bold">support@speedat.com.pk</a>
+              </div>
             </CardContent>
           </Card>
 
-          <Card className="shadow-md border-0 hover:shadow-lg transition-shadow">
+          <Card className="shadow-xl border-t-4 border-secondary hover:shadow-2xl transition-all group">
             <CardContent className="p-8 text-center flex flex-col items-center">
-              <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mb-6">
-                <MapPin className="h-8 w-8 text-primary" />
+              <div className="w-16 h-16 bg-secondary/20 rounded-full flex items-center justify-center mb-6 group-hover:bg-secondary group-hover:text-white transition-all group-hover:scale-110">
+                <MapPin className="h-8 w-8 text-secondary group-hover:text-white" />
               </div>
               <h3 className="text-xl font-bold text-secondary mb-4">Visit Us</h3>
-              <p className="text-gray-600">
-                Al-Sheikh Plaza, Model Town<br />
-                Lahore, Pakistan
-              </p>
+              <p className="text-gray-700 font-medium">Lahore, Pakistan</p>
             </CardContent>
           </Card>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-          <Card className="shadow-lg border-0 overflow-hidden">
-            <iframe 
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1m3!1d3402.565568140884!2d74.3219!3d31.4811!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMzHCsDI4JzUyLjAiTiA3NMKwMTknMTguOCJF!5e0!3m2!1sen!2s!4v1620000000000!5m2!1sen!2s" 
-              width="100%" 
-              height="100%" 
-              style={{ border: 0, minHeight: '400px' }} 
-              allowFullScreen="" 
-              loading="lazy"
-              title="Speedat Office Location"
-            ></iframe>
-          </Card>
+        <Card className="shadow-2xl border-t-4 border-primary">
+          <CardContent className="p-8 md:p-12">
+            <h2 className="text-3xl font-bold text-secondary mb-8 text-center">Send us a Message</h2>
+            
+            {status.success && (
+              <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-xl border-l-4 border-green-500 font-medium">
+                ✓ Message sent successfully! We'll get back to you soon.
+              </div>
+            )}
 
-          <Card className="shadow-lg border-0">
-            <CardContent className="p-8">
-              <h3 className="text-2xl font-bold text-secondary mb-6">Send us a Message</h3>
-              
-              {status.success && (
-                <div className="mb-6 p-4 bg-green-50 text-green-700 rounded-lg border border-green-200">
-                  Message sent successfully! We'll get back to you soon.
-                </div>
-              )}
-              
-              {status.error && (
-                <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-lg border border-red-200">
-                  {status.error}
-                </div>
-              )}
+            {status.error && (
+              <div className="mb-6 p-4 bg-red-50 text-red-700 rounded-xl border-l-4 border-red-500 font-medium">
+                {status.error}
+              </div>
+            )}
 
-              <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div className="space-y-2">
-                  <Label htmlFor="name" className="text-gray-700">Your Name</Label>
-                  <Input 
-                    id="name" 
-                    required 
-                    value={formData.name} 
-                    onChange={e => setFormData({...formData, name: e.target.value})}
-                    className="text-gray-900"
+                  <Label htmlFor="name" className="font-bold text-secondary">Your Name</Label>
+                  <Input
+                    id="name"
+                    placeholder="John Doe"
+                    value={formData.name}
+                    onChange={(e) => setFormData(prev => ({ ...prev, name: e.target.value }))}
+                    required
+                    className="border-2 border-gray-300 focus:border-primary focus:ring-primary h-12 font-medium"
                   />
                 </div>
                 <div className="space-y-2">
-                  <Label htmlFor="email" className="text-gray-700">Email Address</Label>
-                  <Input 
-                    id="email" 
-                    type="email" 
-                    required 
-                    value={formData.email} 
-                    onChange={e => setFormData({...formData, email: e.target.value})}
-                    className="text-gray-900"
+                  <Label htmlFor="email" className="font-bold text-secondary">Email Address</Label>
+                  <Input
+                    id="email"
+                    type="email"
+                    placeholder="john@example.com"
+                    value={formData.email}
+                    onChange={(e) => setFormData(prev => ({ ...prev, email: e.target.value }))}
+                    required
+                    className="border-2 border-gray-300 focus:border-primary focus:ring-primary h-12 font-medium"
                   />
                 </div>
-                <div className="space-y-2">
-                  <Label htmlFor="message" className="text-gray-700">Message</Label>
-                  <Textarea 
-                    id="message" 
-                    required 
-                    rows={5}
-                    value={formData.message} 
-                    onChange={e => setFormData({...formData, message: e.target.value})}
-                    className="text-gray-900 resize-none"
-                  />
-                </div>
-                <Button type="submit" disabled={status.loading} className="w-full h-12 bg-primary hover:bg-primary/90 text-white">
-                  {status.loading ? 'Sending...' : <><Send className="mr-2 h-4 w-4" /> Send Message</>}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="message" className="font-bold text-secondary">Message</Label>
+                <Textarea
+                  id="message"
+                  placeholder="Tell us how we can help you..."
+                  value={formData.message}
+                  onChange={(e) => setFormData(prev => ({ ...prev, message: e.target.value }))}
+                  required
+                  className="border-2 border-gray-300 focus:border-primary focus:ring-primary min-h-32 font-medium"
+                />
+              </div>
+
+              <Button 
+                type="submit" 
+                disabled={status.loading}
+                className="w-full bg-gradient-to-r from-primary to-secondary hover:from-primary/90 hover:to-secondary/90 text-white h-14 font-bold uppercase tracking-wide rounded-xl"
+              >
+                {status.loading ? 'Sending...' : <><Send className="mr-2 h-5 w-5" /> Send Message</>}
+              </Button>
+            </form>
+          </CardContent>
+        </Card>
       </div>
     </div>
   );
 };
 
 export default ContactPage;
+EOF
